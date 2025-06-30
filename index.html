@@ -726,5 +726,25 @@
       title="Sobia Liaqat Chatbot"
     ></iframe>
   </div>
+  <script>// Chatbot Show/Hide (starts open at top right)
+    const chatbotBtn = document.getElementById('chatbot-toggle-btn');
+    const chatbotIframe = document.getElementById('chatbase-iframe');
+    const chatbotWrapper = document.getElementById('chatbot-wrapper');
+    const chatbotClose = document.getElementById('chatbot-close-btn');
+    // Chatbot starts open
+    chatbotBtn.style.display = "none";
+    chatbotIframe.style.display = "block";
+    chatbotClose.style.display = "flex";
+    chatbotClose.addEventListener('click', function() {
+      chatbotIframe.style.display = 'none';
+      chatbotClose.style.display = 'none';
+      chatbotBtn.style.display = 'flex';
+    });
+    chatbotBtn.addEventListener('click', function() {
+      chatbotIframe.style.display = 'block';
+      chatbotClose.style.display = 'flex';
+      chatbotBtn.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
