@@ -452,6 +452,59 @@
       .hero h1 { font-size: 2rem; }
       .section-title h2 { font-size: 1.5rem; }
     }
+    /* Chatbot custom styles */
+    #chatbot-toggle-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      box-shadow: 0 4px 16px #0002;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 10001;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    #chatbot-toggle-btn:hover {
+      background: var(--primary);
+      color: var(--accent);
+    }
+    #chatbase-iframe {
+      position: fixed;
+      top: 32px;
+      right: 32px;
+      border: none;
+      z-index: 10000;
+      border-radius: 16px;
+      box-shadow: 0 4px 32px #0002;
+      display: block;
+      /* Will be hidden via JS */
+    }
+    #chatbot-close-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: #fff;
+      color: #1f2937;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 1.4rem;
+      z-index: 10001;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #0002;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
