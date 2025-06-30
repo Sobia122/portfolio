@@ -766,38 +766,37 @@
       Enhanced by <a href="#">Sobia Liaqat</a>
     </div>
   </footer>
-<!-- Chatbase AI Chatbot (Minimizable, starts open at top right) -->
-  <button id="chatbot-toggle-btn" aria-label="Open Chatbot"><i class="fa-solid fa-comments"></i></button>
-  <div id="chatbot-wrapper" style="position:fixed;top:32px;right:32px;z-index:10000;">
-    <button id="chatbot-close-btn" aria-label="Close Chatbot" title="Close"><i class="fa-solid fa-times"></i></button>
-    <iframe
-      id="chatbase-iframe"
-      src="https://www.chatbase.co/chatbot-iframe/Pfv7zJW9ub63QhLylRaaa"
-      width="370"
-      height="520"
-      allow="clipboard-write"
-      title="Sobia Liaqat Chatbot"
-    ></iframe>
-  </div>
-  <script>// Chatbot Show/Hide (starts open at top right)
-    const chatbotBtn = document.getElementById('chatbot-toggle-btn');
-    const chatbotIframe = document.getElementById('chatbase-iframe');
-    const chatbotWrapper = document.getElementById('chatbot-wrapper');
-    const chatbotClose = document.getElementById('chatbot-close-btn');
-    // Chatbot starts open
-    chatbotBtn.style.display = "none";
-    chatbotIframe.style.display = "block";
-    chatbotClose.style.display = "flex";
-    chatbotClose.addEventListener('click', function() {
-      chatbotIframe.style.display = 'none';
-      chatbotClose.style.display = 'none';
-      chatbotBtn.style.display = 'flex';
-    });
-    chatbotBtn.addEventListener('click', function() {
-      chatbotIframe.style.display = 'block';
-      chatbotClose.style.display = 'flex';
-      chatbotBtn.style.display = 'none';
-    });
-  </script>
+<!-- ... -->
+<button id="chatbot-toggle-btn" aria-label="Open Chatbot" style="display:block;"><i class="fa-solid fa-comments"></i></button>
+<div id="chatbot-wrapper" style="position:fixed;top:32px;right:32px;z-index:10000;">
+  <button id="chatbot-close-btn" aria-label="Close Chatbot" title="Close"><i class="fa-solid fa-times"></i></button>
+  <iframe
+    id="chatbase-iframe"
+    src="https://www.chatbase.co/chatbot-iframe/Pfv7zJW9ub63QhLylRaaa"
+    width="370"
+    height="520"
+    allow="clipboard-write"
+    title="Sobia Liaqat Chatbot"
+  ></iframe>
+</div>
+<script>
+  const chatbotBtn = document.getElementById('chatbot-toggle-btn');
+  const chatbotIframe = document.getElementById('chatbase-iframe');
+  const chatbotClose = document.getElementById('chatbot-close-btn');
+  // Chatbot starts open
+  chatbotBtn.style.display = "none";
+  chatbotIframe.style.display = "block";
+  chatbotClose.style.display = "flex";
+  chatbotClose.addEventListener('click', function() {
+    chatbotIframe.style.display = 'none';
+    chatbotClose.style.display = 'none';
+    chatbotBtn.style.display = 'block'; // <-- Fix
+  });
+  chatbotBtn.addEventListener('click', function() {
+    chatbotIframe.style.display = 'block';
+    chatbotClose.style.display = 'flex';
+    chatbotBtn.style.display = 'none';
+  });
+</script>
 </body>
 </html>
