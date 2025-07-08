@@ -798,5 +798,20 @@
     chatbotBtn.style.display = 'none';
   });
 </script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+<script>
+  ScrollReveal({ 
+    distance: '60px',
+    duration: 1000,
+    delay: 100,
+    reset: false
+  });
+
+  ScrollReveal().reveal('.section-title, .about-row, .skills-grid, .services-grid, .portfolio-grid, .testimonials-grid, .contact-row', {
+    origin: 'bottom',
+    interval: 200
+  });
+</script>
+
 </body>
 </html>
