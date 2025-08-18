@@ -520,6 +520,31 @@
       .testimonial-img { width: 34px; height: 34px; }
       .contact-row { flex-direction: column; }
     }
+    /* Extra Mobile Tweaks for Small Devices */
+    @media (max-width: 480px) {
+      .hero .cta, .portfolio-info .btn {
+        font-size: 0.89rem;
+        padding: 0.6rem 1.2rem;
+      }
+      .about-info, .about-img, .skill-card, .service-card, .portfolio-item, .testimonial-card, .contact-details, .contact-form {
+        min-width: 90vw !important;
+        max-width: 99vw !important;
+      }
+      .portfolio-img {
+        height: 53vw !important;
+        min-height: 64px;
+        max-height: 110px;
+      }
+      nav ul {
+        width: 80vw;
+        padding-left: 1vw;
+      }
+      #chatbase-iframe {
+        min-width: 98vw !important;
+        min-height: 220px;
+        height: 53vh !important;
+      }
+    }
     /* Chatbot custom styles */
     #chatbot-toggle-btn {
       position: fixed;
