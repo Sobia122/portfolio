@@ -381,31 +381,38 @@
     }
     /* Mobile Responsive Fix for Portfolio */
     @media (max-width: 650px) {
-      .portfolio-grid {
-        flex-direction: column;
-        gap: 1.3rem;
-      }
-      .portfolio-item {
-        min-width: 80vw;
-        max-width: 98vw;
-        width: 100%;
-      }
-      .portfolio-img {
-        height: 140px;
-      }
-      .portfolio-info h4,
-      .portfolio-info p,
-      .portfolio-info .btn {
-        text-align: left;
-        font-size: 1rem;
-      }
-      .portfolio-info .btn {
-        display: block;
-        width: fit-content;
-        margin: 0.7rem 0 0 0;
-        font-size: 1rem;
-      }
-    }
+  .portfolio-grid {
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+  .portfolio-item {
+    min-width: 0;
+    max-width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .portfolio-img {
+    height: 140px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .portfolio-info {
+    padding: 1rem 0.7rem;
+  }
+  .portfolio-info h4,
+  .portfolio-info p,
+  .portfolio-info .btn {
+    text-align: left;
+    font-size: 1rem;
+    word-break: break-word;
+  }
+  .portfolio-info .btn {
+    display: block;
+    width: auto;
+    margin: 0.7rem 0 0 0;
+    font-size: 1rem;
+  }
+}
     /* Testimonials */
     .testimonials-grid {
       display: flex;
