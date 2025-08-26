@@ -18,6 +18,9 @@
       --muted: #6b7280;
     }
     * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       font-family: 'Open Sans', Arial, sans-serif;
@@ -66,54 +69,66 @@
       font-size: 1rem;
       transition: color 0.2s;
     }
-    nav ul li a:hover {
+    nav ul li a:hover, nav ul li.active a {
       color: var(--accent);
     }
-    /* Hamburger Menu Styles */
-    .nav-toggle {
+    /* Responsive Navbar */
+    .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
-      margin-left: 1.3rem;
+      gap: 5px;
+      margin-left: 12px;
     }
-    .nav-toggle span {
-      height: 3px;
-      width: 28px;
-      background: #fff;
-      margin: 4px 0;
-      border-radius: 2px;
+    .menu-toggle span {
       display: block;
-      transition: 0.3s;
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
     }
-    /* Show menu on mobile */
-    @media (max-width: 800px) {
-      nav .container {
-        flex-direction: row;
-        justify-content: space-between;
+    @media (max-width: 900px) {
+      .about-row, .skills-grid, .services-grid, .portfolio-grid, .testimonials-grid, .contact-row {
+        flex-direction: column;
         align-items: center;
       }
       nav ul {
-        position: fixed;
-        top: 0;
-        right: -100vw;
-        height: 100vh;
-        width: 230px;
-        background: var(--primary);
+        gap: 1.5rem;
+      }
+    }
+    @media (max-width: 800px) {
+      nav .container {
+        flex-wrap: wrap;
+      }
+      nav ul {
         flex-direction: column;
-        gap: 2rem;
-        align-items: start;
-        padding-top: 5.5rem;
-        padding-left: 2rem;
-        transition: right 0.3s;
-        z-index: 9999;
-        box-shadow: -2px 0 16px #0004;
+        width: 100%;
+        background: var(--primary);
+        position: absolute;
+        left: 0;
+        top: 60px;
+        display: none;
+        z-index: 888;
+        padding: 1.5rem 0;
+        border-radius: 0 0 12px 12px;
+        align-items: flex-start;
       }
       nav ul.open {
-        right: 0;
-      }
-      .nav-toggle {
         display: flex;
       }
+      .menu-toggle {
+        display: flex;
+        z-index: 9999;
+      }
+    }
+    @media (max-width: 650px) {
+      .container {
+        width: 98%;
+      }
+      .hero h1 { font-size: 2rem; }
+      .section-title h2 { font-size: 1.5rem; }
+      .about-img { width: 98vw !important; max-width: 340px !important;}
     }
     /* Hero Section */
     .hero {
@@ -122,31 +137,31 @@
       padding: 90px 0 60px 0;
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
     .hero-img {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       object-fit: cover;
-      border: 5px solid #fff;
-      margin-bottom: 1rem;
+      border: 6px solid #fff;
+      margin-bottom: 1.5rem;
       box-shadow: 0 6px 32px #1f29374d;
+      background: #fff;
     }
     .hero h1 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2.1rem;
+      font-size: 2.8rem;
       margin-bottom: 0.5rem;
       font-weight: 700;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.5px;
     }
     .hero h1 span {
       color: var(--accent);
-      font-size: 1.15rem;
-      display: block;
     }
     .hero p {
-      font-size: 1.07rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
       color: #e0e7ef;
     }
     .hero .cta {
@@ -154,13 +169,13 @@
       background: var(--accent);
       color: var(--primary);
       font-weight: 700;
-      font-size: 1.02rem;
-      padding: 0.7rem 1.7rem;
+      font-size: 1.15rem;
+      padding: 0.8rem 2.2rem;
       border-radius: 25px;
       text-decoration: none;
       transition: background 0.2s, color 0.2s, transform 0.18s, box-shadow 0.18s;
       box-shadow: 0 2px 18px #0002;
-      margin-right: 0.7rem;
+      margin-right: 1rem;
       margin-bottom: 0.7rem;
     }
     .hero .cta:last-child { margin-right: 0; }
@@ -173,119 +188,122 @@
     /* Section Titles */
     .section-title {
       text-align: center;
-      margin: 2.5rem 0 1.5rem 0;
+      margin: 3.5rem 0 2.2rem 0;
     }
     .section-title h2 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.4rem;
+      font-size: 2.2rem;
       color: var(--primary);
       font-weight: 700;
       margin-bottom: 0.3rem;
     }
     .section-title p {
       color: var(--muted);
-      font-size: 1.01rem;
+      font-size: 1.07rem;
       font-weight: 600;
     }
     /* About */
     .about-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.4rem;
+      gap: 2.5rem;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
     }
     .about-img {
-      width: 96vw;
-      max-width: 350px;
-      border-radius: 13px;
+      width: 340px;
+      border-radius: 16px;
       box-shadow: 0 2px 16px #1f29371a;
+      object-fit: cover;
+      max-width: 100%;
     }
     .about-info {
-      flex: 1 1 230px;
-      max-width: 98vw;
-      min-width: 200px;
+      flex: 1 1 340px;
+      max-width: 530px;
     }
     .about-info h3 {
-      font-size: 1.08rem;
+      font-size: 1.3rem;
       color: var(--accent);
       margin-top: 0;
     }
     .about-info ul {
       padding: 0;
-      margin: 1rem 0 0 0;
+      margin: 1.2rem 0 0 0;
       list-style: none;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
     .about-info ul li {
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
     }
     /* Skills */
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.2rem;
+      gap: 2.5rem;
       justify-content: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: 2rem;
     }
     .skill-card {
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 16px;
       box-shadow: 0 4px 16px #1f293713;
-      padding: 1.2rem 1.2rem 1rem 1.2rem;
-      min-width: 130px;
-      flex: 1 1 130px;
-      max-width: 220px;
+      padding: 2rem 2rem 1.5rem 2rem;
+      min-width: 220px;
+      flex: 1 1 210px;
       text-align: center;
+      max-width: 260px;
     }
     .skill-card .fa-solid, .skill-card .fa-brands {
-      font-size: 1.8rem;
+      font-size: 2.3rem;
       color: var(--accent);
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.8rem;
     }
     .skill-title {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
     .skill-bar-bg {
       background: #e6edf5;
       border-radius: 7px;
-      height: 9px;
+      height: 10px;
       width: 100%;
-      margin: 0.5rem 0 0.2rem 0;
+      margin: 0.7rem 0 0.3rem 0;
       overflow: hidden;
     }
     .skill-bar {
       background: linear-gradient(90deg, var(--accent), var(--primary));
-      height: 9px;
-      width: var(--progress, 90%);
-      transition: width 0.4s;
+      height: 10px;
+      width: 0;
+      transition: width 1s cubic-bezier(.4,2.6,.4,.8);
     }
     .skill-percent {
-      font-size: 0.92rem;
-      color: var(--muted);
-      font-weight: 600;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    /* Animate skill bars on scroll */
+    .skills-grid.animated .skill-bar[style] {
+      width: var(--progress, '0%');
     }
     /* Services */
     .services-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.2rem;
+      gap: 2.5rem;
       justify-content: center;
     }
     .service-card {
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 16px;
       box-shadow: 0 2px 12px #1f293713;
-      padding: 1.5rem 1rem;
-      min-width: 130px;
-      flex: 1 1 130px;
-      max-width: 220px;
+      padding: 2rem 1.5rem;
+      min-width: 210px;
+      flex: 1 1 200px;
       text-align: center;
       transition: transform 0.15s, box-shadow 0.2s;
+      max-width: 260px;
     }
     .service-card:hover {
       transform: translateY(-7px) scale(1.03);
@@ -293,30 +311,30 @@
     }
     .service-card .fa-solid, .service-card .fa-brands {
       color: var(--accent);
-      font-size: 1.7rem;
+      font-size: 2.2rem;
       margin-bottom: 1rem;
     }
     .service-title {
-      font-size: 1.01rem;
+      font-size: 1.13rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
       color: var(--primary);
     }
     /* Portfolio */
     .portfolio-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.2rem;
+      gap: 2.2rem;
       justify-content: center;
     }
     .portfolio-item {
       background: var(--card-bg);
-      border-radius: 10px;
+      border-radius: 12px;
       box-shadow: 0 4px 20px #6edff613;
       overflow: hidden;
-      min-width: 180px;
+      min-width: 230px;
       max-width: 350px;
-      flex: 1 1 180px;
+      flex: 1 1 250px;
       transition: transform 0.18s, box-shadow 0.18s;
     }
     .portfolio-item:hover {
@@ -325,23 +343,23 @@
     }
     .portfolio-img {
       width: 100%;
-      height: 120px;
+      height: 180px;
       object-fit: cover;
       border-bottom: 3px solid var(--accent);
     }
     .portfolio-info {
-      padding: 0.7rem 0.6rem;
+      padding: 1.2rem 1rem;
       color: var(--primary);
     }
     .portfolio-info h4 {
-      margin: 0 0 0.3rem 0;
+      margin: 0 0 0.4rem 0;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.11rem;
       color: var(--accent);
     }
     .portfolio-info p {
-      margin: 0 0 0.4rem 0;
-      font-size: 0.91rem;
+      margin: 0 0 0.6rem 0;
+      font-size: 0.98rem;
       color: var(--muted);
     }
     .portfolio-info .btn {
@@ -349,10 +367,10 @@
       background: var(--accent);
       color: var(--primary);
       font-weight: 700;
-      border-radius: 13px;
-      padding: 3px 14px;
+      border-radius: 16px;
+      padding: 3px 18px;
       text-decoration: none;
-      font-size: 0.93rem;
+      font-size: 0.95rem;
       transition: background 0.2s, color 0.2s, transform 0.18s, box-shadow 0.18s;
     }
     .portfolio-info .btn:hover {
@@ -365,74 +383,76 @@
     .testimonials-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.2rem;
+      gap: 2.3rem;
       justify-content: center;
     }
     .testimonial-card {
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 16px;
       box-shadow: 0 2px 16px #1f293713;
-      padding: 1.2rem 1.1rem 1rem 1.1rem;
-      min-width: 140px;
-      max-width: 320px;
-      flex: 1 1 140px;
+      padding: 2rem 1.7rem 1.4rem 1.7rem;
+      min-width: 210px;
+      max-width: 350px;
+      flex: 1 1 210px;
       text-align: center;
     }
     .testimonial-img {
-      width: 43px;
-      height: 43px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0 2px 16px #6edff622;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.8rem;
     }
     .testimonial-name {
       font-weight: 700;
       color: var(--primary);
       margin-bottom: 0.1rem;
-      font-size: 0.99rem;
     }
     .testimonial-role {
       color: var(--muted);
-      font-size: 0.97rem;
-      margin-bottom: 0.6rem;
+      font-size: 0.98rem;
+      margin-bottom: 0.7rem;
     }
     .testimonial-text {
       font-style: italic;
       color: var(--muted);
-      font-size: 0.97rem;
+      font-size: 1rem;
     }
     /* Contact */
     .contact-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.1rem;
+      gap: 2.4rem;
       justify-content: center;
       align-items: flex-start;
     }
     .contact-details {
       background: var(--card-bg);
-      border-radius: 10px;
+      border-radius: 12px;
       box-shadow: 0 2px 12px #1f293713;
-      padding: 1.1rem 1rem;
-      min-width: 160px;
-      font-size: 0.97rem;
+      padding: 2rem 1.7rem;
+      min-width: 240px;
+      margin-bottom: 1rem;
     }
     .contact-details .fa-solid, .contact-details .fa-brands {
       color: var(--accent);
-      margin-right: 0.6rem;
+      margin-right: 0.7rem;
       width: 1.5em;
       text-align: center;
     }
     .contact-details div {
-      margin-bottom: 0.8rem;
+      margin-bottom: 1.2rem;
       color: var(--primary);
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
     }
     .contact-details .social-links a {
       color: var(--accent);
-      font-size: 1.2rem;
-      margin-right: 0.9rem;
+      font-size: 1.4rem;
+      margin-right: 1.1rem;
       transition: color 0.2s;
     }
     .contact-details .social-links a:hover {
@@ -440,21 +460,21 @@
     }
     .contact-form {
       background: var(--card-bg);
-      border-radius: 10px;
+      border-radius: 12px;
       box-shadow: 0 2px 12px #1f293713;
-      padding: 1.2rem 1rem;
-      min-width: 180px;
-      flex: 1 1 220px;
-      max-width: 400px;
+      padding: 2rem 1.5rem;
+      min-width: 270px;
+      flex: 1 1 340px;
+      margin-bottom: 1rem;
     }
     .contact-form input, .contact-form textarea {
       width: 100%;
-      padding: 0.65rem 0.85rem;
-      margin-bottom: 0.7rem;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.1rem;
       border: 1px solid #ccd6e7;
       border-radius: 8px;
       background: #f2f6fa;
-      font-size: 0.97rem;
+      font-size: 1rem;
       font-family: 'Open Sans', Arial, sans-serif;
       color: var(--primary);
       resize: none;
@@ -469,9 +489,9 @@
       color: var(--primary);
       font-weight: 700;
       border: none;
-      border-radius: 13px;
-      padding: 0.6rem 1.8rem;
-      font-size: 1.01rem;
+      border-radius: 16px;
+      padding: 0.7rem 2.3rem;
+      font-size: 1.08rem;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
       box-shadow: 0 2px 12px #6edff622;
@@ -485,54 +505,33 @@
       background: var(--primary);
       color: #fff;
       text-align: center;
-      padding: 1.1rem 0 0.7rem 0;
-      margin-top: 1.7rem;
-      font-size: 0.98rem;
+      padding: 2rem 0 1rem 0;
+      margin-top: 3rem;
+      font-size: 1rem;
       letter-spacing: 0.7px;
     }
     footer a {
       color: var(--accent);
       text-decoration: none;
       font-weight: 600;
-      margin-left: 0.3rem;
+      margin-left: 0.5rem;
     }
     footer a:hover {
       text-decoration: underline;
     }
-    /* Responsive Tweaks */
-    @media (max-width: 650px) {
-      .container {
-        width: 98%;
-        padding: 0 1vw;
-      }
-      .hero h1 { font-size: 1.28rem; }
-      .hero h1 span { font-size: 1rem;}
-      .section-title h2 { font-size: 1.02rem; }
-      .about-img { max-width: 98vw; }
-      .skills-grid, .services-grid, .portfolio-grid, .testimonials-grid, .contact-row {
-        gap: 0.6rem;
-      }
-      .skill-card, .service-card, .portfolio-item, .testimonial-card, .contact-details, .contact-form {
-        min-width: 90vw;
-        max-width: 99vw;
-      }
-      .portfolio-img { height: 80px; }
-      .testimonial-img { width: 34px; height: 34px; }
-      .contact-row { flex-direction: column; }
-    }
     /* Chatbot custom styles */
     #chatbot-toggle-btn {
       position: fixed;
-      bottom: 22px;
-      right: 16px;
+      bottom: 32px;
+      right: 32px;
       background: var(--accent);
       color: var(--primary);
       border: none;
       border-radius: 50%;
-      width: 46px;
-      height: 46px;
+      width: 56px;
+      height: 56px;
       box-shadow: 0 4px 16px #0002;
-      font-size: 1.3rem;
+      font-size: 2rem;
       cursor: pointer;
       z-index: 10001;
       display: none;
@@ -546,31 +545,25 @@
     }
     #chatbase-iframe {
       position: fixed;
-      top: 18px;
-      right: 6px;
+      top: 32px;
+      right: 32px;
       border: none;
       z-index: 10000;
       border-radius: 16px;
       box-shadow: 0 4px 32px #0002;
       display: block;
-      width: 98vw;
-      max-width: 370px;
-      height: 70vh;
-      min-height: 370px;
-      background: #fff;
-      /* Will be hidden via JS */
     }
     #chatbot-close-btn {
       position: absolute;
-      top: 4px;
-      right: 10px;
+      top: 8px;
+      right: 12px;
       background: #fff;
       color: #1f2937;
       border: none;
       border-radius: 50%;
-      width: 23px;
-      height: 23px;
-      font-size: 1.15rem;
+      width: 28px;
+      height: 28px;
+      font-size: 1.4rem;
       z-index: 10001;
       cursor: pointer;
       box-shadow: 0 2px 8px #0002;
@@ -578,21 +571,11 @@
       align-items: center;
       justify-content: center;
     }
-    @media (max-width: 650px) {
-      #chatbase-iframe {
-        width: 98vw;
-        min-width: 98vw;
-        max-width: 99vw;
-        left: 1vw;
-        right: 1vw;
-        height: 68vh;
-      }
-      #chatbot-close-btn {
-        right: 5px;
-        top: 2px;
-        width: 22px;
-        height: 22px;
-      }
+    @media (max-width: 480px) {
+      .hero-img { width: 120px; height: 120px; }
+      .about-img { width: 98vw !important; max-width: 220px !important;}
+      #chatbase-iframe { width: 95vw !important; height: 70vh !important; right: 2%; top: 20px; }
+      #chatbot-toggle-btn { right: 12px; bottom: 12px; }
     }
   </style>
 </head>
@@ -601,18 +584,18 @@
   <nav>
     <div class="container">
       <a href="#home" class="brand">Sobia Liaqat</a>
-      <div class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" tabindex="0">
+      <div class="menu-toggle" id="mobile-menu">
         <span></span>
         <span></span>
         <span></span>
       </div>
-      <ul id="nav-menu">
-        <li><a href="#home" onclick="closeMenu()">Home</a></li>
-        <li><a href="#about" onclick="closeMenu()">About</a></li>
-        <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
-        <li><a href="#services" onclick="closeMenu()">Services</a></li>
-        <li><a href="#portfolio" onclick="closeMenu()">Portfolio</a></li>
-        <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+      <ul id="nav-ul">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -648,157 +631,157 @@
       </div>
     </div>
   </section>
-<!-- Skills -->
-<section id="skills">
-  <div class="container">
-    <div class="section-title">
-      <h2>Skills</h2>
-      <p>Tech Stack & Expertise</p>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <i class="fa-brands fa-html5"></i>
-        <div class="skill-title">HTML5</div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 98%"></div></div>
-        <div class="skill-percent">98%</div>
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p>Tech Stack & Expertise</p>
       </div>
-      <div class="skill-card">
-        <i class="fa-brands fa-css3-alt"></i>
-        <div class="skill-title">CSS3</div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 96%"></div></div>
-        <div class="skill-percent">96%</div>
-      </div>
-      <div class="skill-card">
-        <i class="fa-brands fa-bootstrap"></i>
-        <div class="skill-title">Bootstrap</div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 94%"></div></div>
-        <div class="skill-percent">94%</div>
-      </div>
-      <div class="skill-card">
-        <i class="fa-brands fa-php"></i>
-        <div class="skill-title">PHP</div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 92%"></div></div>
-        <div class="skill-percent">92%</div>
-      </div>
-      <div class="skill-card">
-        <i class="fa-brands fa-laravel"></i>
-        <div class="skill-title">Laravel</div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 90%"></div></div>
-        <div class="skill-percent">90%</div>
-      </div>
-      <div class="skill-card">
-        <i class="fa-brands fa-python"></i>
-        <div class="skill-title">Python</div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 85%"></div></div>
-        <div class="skill-percent">85%</div>
-      </div>
-      <div class="skill-card">
-        <i class="fa-brands fa-python"></i>
-        <div class="skill-title">Django</div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 80%"></div></div>
-        <div class="skill-percent">80%</div>
-      </div>
-      <div class="skill-card">
-        <i class="fa-brands fa-wordpress"></i>
-        <div class="skill-title">WordPress</div>
-        <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 95%"></div></div>
-        <div class="skill-percent">95%</div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Services -->
-<section id="services">
-  <div class="container">
-    <div class="section-title">
-      <h2>Services</h2>
-      <p>What I Offer</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <i class="fa-solid fa-code"></i>
-        <div class="service-title">Web Development</div>
-        <div>Responsive, high-performance websites & web apps using PHP, Laravel, Python, Django, WordPress, HTML, CSS, JS, and Bootstrap.</div>
-      </div>
-      <div class="service-card">
-        <i class="fa-brands fa-wordpress"></i>
-        <div class="service-title">WordPress Expert</div>
-        <div>Custom themes, plugin development, WooCommerce integration, and full CMS solutions tailored to your brand.</div>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-chart-line"></i>
-        <div class="service-title">SEO & Content</div>
-        <div>SEO-optimized content, keyword strategies, and blog/article writing for better ranking and visibility.</div>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-paintbrush"></i>
-        <div class="service-title">Graphic Design</div>
-        <div>Logo creation, branding materials, social media posts, and business cards using Canva and Adobe tools.</div>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-video"></i>
-        <div class="service-title">Video Editing</div>
-        <div>YouTube intros, reels, promos, and professional video edits for social platforms and ads.</div>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-headset"></i>
-        <div class="service-title">Consulting & Support</div>
-        <div>Website troubleshooting, planning, and one-on-one guidance to build or scale your digital presence.</div>
+      <div class="skills-grid" id="skills-grid">
+        <div class="skill-card">
+          <i class="fa-brands fa-html5"></i>
+          <div class="skill-title">HTML5</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 98%"></div></div>
+          <div class="skill-percent">98%</div>
+        </div>
+        <div class="skill-card">
+          <i class="fa-brands fa-css3-alt"></i>
+          <div class="skill-title">CSS3</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 96%"></div></div>
+          <div class="skill-percent">96%</div>
+        </div>
+        <div class="skill-card">
+          <i class="fa-brands fa-bootstrap"></i>
+          <div class="skill-title">Bootstrap</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 94%"></div></div>
+          <div class="skill-percent">94%</div>
+        </div>
+        <div class="skill-card">
+          <i class="fa-brands fa-php"></i>
+          <div class="skill-title">PHP</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 92%"></div></div>
+          <div class="skill-percent">92%</div>
+        </div>
+        <div class="skill-card">
+          <i class="fa-brands fa-laravel"></i>
+          <div class="skill-title">Laravel</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 90%"></div></div>
+          <div class="skill-percent">90%</div>
+        </div>
+        <div class="skill-card">
+          <i class="fa-brands fa-python"></i>
+          <div class="skill-title">Python</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 85%"></div></div>
+          <div class="skill-percent">85%</div>
+        </div>
+        <div class="skill-card">
+          <i class="fa-brands fa-python"></i>
+          <div class="skill-title">Django</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 80%"></div></div>
+          <div class="skill-percent">80%</div>
+        </div>
+        <div class="skill-card">
+          <i class="fa-brands fa-wordpress"></i>
+          <div class="skill-title">WordPress</div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="--progress: 95%"></div></div>
+          <div class="skill-percent">95%</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Services</h2>
+        <p>What I Offer</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fa-solid fa-code"></i>
+          <div class="service-title">Web Development</div>
+          <div>Responsive, high-performance websites & web apps using PHP, Laravel, Python, Django, WordPress, HTML, CSS, JS, and Bootstrap.</div>
+        </div>
+        <div class="service-card">
+          <i class="fa-brands fa-wordpress"></i>
+          <div class="service-title">WordPress Expert</div>
+          <div>Custom themes, plugin development, WooCommerce integration, and full CMS solutions tailored to your brand.</div>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-chart-line"></i>
+          <div class="service-title">SEO & Content</div>
+          <div>SEO-optimized content, keyword strategies, and blog/article writing for better ranking and visibility.</div>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-paintbrush"></i>
+          <div class="service-title">Graphic Design</div>
+          <div>Logo creation, branding materials, social media posts, and business cards using Canva and Adobe tools.</div>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-video"></i>
+          <div class="service-title">Video Editing</div>
+          <div>YouTube intros, reels, promos, and professional video edits for social platforms and ads.</div>
+        </div>
+        <div class="service-card">
+          <i class="fa-solid fa-headset"></i>
+          <div class="service-title">Consulting & Support</div>
+          <div>Website troubleshooting, planning, and one-on-one guidance to build or scale your digital presence.</div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- Portfolio -->
-<section id="portfolio">
-  <div class="container">
-    <div class="section-title">
-      <h2>Portfolio</h2>
-      <p>Featured Projects</p>
+  <section id="portfolio">
+    <div class="container">
+      <div class="section-title">
+        <h2>Portfolio</h2>
+        <p>Featured Projects</p>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="images/img4.jpg" class="portfolio-img" alt="Business Web Platform">
+          <div class="portfolio-info">
+            <h4>Business Web Platform</h4>
+            <p>Laravel + Vue.js, custom admin panel, live analytics</p>
+            <a href="https://github.com/Sobia122/online-drc-laravel" class="btn">View Project</a>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="images/work-6.jpg" class="portfolio-img" alt="WordPress E-Commerce">
+          <div class="portfolio-info">
+            <h4>WordPress E-Commerce</h4>
+            <p>WooCommerce, payment integration, SEO optimized</p>
+            <a href="#" class="btn">View Project</a>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="images/pexels-minan1398-1134190.jpg" class="portfolio-img" alt="Travel Guide Website">
+          <div class="portfolio-info">
+            <h4>Travel Guide Website</h4>
+            <p>Custom map integration, blog, responsive UI</p>
+            <a href="https://github.com/Sobia122/online-tourist-guide" class="btn">View Project</a>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="images/Captur.PNG" class="portfolio-img" alt="Custom Bakery Website">
+          <div class="portfolio-info">
+            <h4>Custom Bakery Website</h4>
+            <p>Modern bakery site, product showcase, order integration</p>
+            <a href="https://sobia122.github.io/custom-bakery/" class="btn">View Project</a>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="images/yes.png" class="portfolio-img" alt="3D Cartoon Web App">
+          <div class="portfolio-info">
+            <h4>3D Cartoon Web App</h4>
+            <p>Interactive animations, playful UI/UX, responsive and fun for kids</p>
+            <a href="https://sobia122.github.io/3d-cartoon-website/" class="btn">View Project</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-item">
-        <img src="images/img4.jpg" class="portfolio-img" alt="Business Web Platform">
-        <div class="portfolio-info">
-          <h4>Business Web Platform</h4>
-          <p>Laravel + Vue.js, custom admin panel, live analytics</p>
-          <a href="https://github.com/Sobia122/online-drc-laravel" class="btn">View Project</a>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="images/work-6.jpg" class="portfolio-img" alt="WordPress E-Commerce">
-        <div class="portfolio-info">
-          <h4>WordPress E-Commerce</h4>
-          <p>WooCommerce, payment integration, SEO optimized</p>
-          <a href="#" class="btn">View Project</a>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="images/pexels-minan1398-1134190.jpg" class="portfolio-img" alt="Travel Guide Website">
-        <div class="portfolio-info">
-          <h4>Travel Guide Website</h4>
-          <p>Custom map integration, blog, responsive UI</p>
-          <a href="https://github.com/Sobia122/online-tourist-guide" class="btn">View Project</a>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="images/Captur.PNG" class="portfolio-img" alt="Custom Bakery Website">
-        <div class="portfolio-info">
-          <h4>Custom Bakery Website</h4>
-          <p>Modern bakery site, product showcase, order integration</p>
-          <a href="https://sobia122.github.io/custom-bakery/" class="btn">View Project</a>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="images/yes.png" class="portfolio-img" alt="3D Cartoon Web App">
-        <div class="portfolio-info">
-          <h4>3D Cartoon Web App</h4>
-          <p>Interactive animations, playful UI/UX, responsive and fun for kids</p>
-          <a href="https://sobia122.github.io/3d-cartoon-website/" class="btn">View Project</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
   <!-- Testimonials -->
   <section id="testimonials">
     <div class="container">
@@ -834,39 +817,36 @@
       </div>
     </div>
   </section>
-<!-- Contact -->
-<section id="contact">
-  <div class="container">
-    <div class="section-title">
-      <h2>Contact</h2>
-      <p>Let's discuss your project!</p>
-    </div>
-    <div class="contact-row">
-      <div class="contact-details">
-        <div><i class="fa-solid fa-location-dot"></i> Islamabad, Pakistan</div>
-        <div><i class="fa-solid fa-phone"></i> +92 343 9569001</div>
-        <div><i class="fa-solid fa-envelope"></i> sobialiaqatvu2@gmail.com</div>
-        <div class="social-links">
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/in/sobialiaqat/"><i class="fa-brands fa-linkedin"></i></a>
-        </div>
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Let's discuss your project!</p>
       </div>
-      <!-- ✅ Working Contact Form via FormSubmit -->
-      <form class="contact-form" action="https://formsubmit.co/sobialiaqatvu2@gmail.com" method="POST">
-        <!-- Anti-spam and formatting -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <input type="text" name="subject" placeholder="Subject" required>
-        <textarea name="message" rows="5" placeholder="Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
+      <div class="contact-row">
+        <div class="contact-details">
+          <div><i class="fa-solid fa-location-dot"></i> Hafizabad, Pakistan</div>
+          <div><i class="fa-solid fa-phone"></i> +92 343 9569001</div>
+          <div><i class="fa-solid fa-envelope"></i> sobialiaqatvu2@gmail.com</div>
+          <div class="social-links">
+            <a href="https://www.behance.net/sobialiaqat2" target="_blank"> <i class="fa-brands fa-behance"></i></a>
+            <a href="https://www.upwork.com/freelancers/~0129568efbfda178a0" target="_blank"> <i class="fa-brands fa-upwork"></i></a>
+            <a href="https://www.linkedin.com/in/sobialiaqat/"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+        <form class="contact-form" action="https://formsubmit.co/sobialiaqatvu2@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea name="message" rows="5" placeholder="Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
   <!-- Footer -->
   <footer>
     <div>
@@ -874,81 +854,97 @@
       Enhanced by <a href="#">Sobia Liaqat</a>
     </div>
   </footer>
-<!-- ... -->
-<button id="chatbot-toggle-btn" aria-label="Open Chatbot" style="display:block;"><i class="fa-solid fa-comments"></i></button>
-<div id="chatbot-wrapper" style="position:fixed;top:18px;right:6px;z-index:10000;">
-  <button id="chatbot-close-btn" aria-label="Close Chatbot" title="Close"><i class="fa-solid fa-times"></i></button>
-  <iframe
-    id="chatbase-iframe"
-    src="https://www.chatbase.co/chatbot-iframe/Pfv7zJW9ub63QhLylRaaa"
-    allow="clipboard-write"
-    title="Sobia Liaqat Chatbot"
-  ></iframe>
-</div>
-<script>
-  // Mobile Responsive Nav
-  const navToggle = document.getElementById('nav-toggle');
-  const navMenu = document.getElementById('nav-menu');
-  function closeMenu() {
-    if(window.innerWidth < 800) navMenu.classList.remove('open');
-  }
-  navToggle.addEventListener('click', function() {
-    navMenu.classList.toggle('open');
-  });
-  navToggle.addEventListener('keypress', function(e) {
-    if(e.key === "Enter" || e.key === " ") navMenu.classList.toggle('open');
-  });
-  // Close menu on outside click (mobile)
-  document.addEventListener('click', function(e) {
-    if(window.innerWidth < 800 && navMenu.classList.contains('open')) {
-      if(!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-        navMenu.classList.remove('open');
+  <!-- Chatbot -->
+  <button id="chatbot-toggle-btn" aria-label="Open Chatbot" style="display:block;"><i class="fa-solid fa-comments"></i></button>
+  <div id="chatbot-wrapper" style="position:fixed;top:32px;right:32px;z-index:10000;">
+    <button id="chatbot-close-btn" aria-label="Close Chatbot" title="Close"><i class="fa-solid fa-times"></i></button>
+    <iframe
+      id="chatbase-iframe"
+      src="https://www.chatbase.co/chatbot-iframe/Pfv7zJW9ub63QhLylRaaa"
+      width="370"
+      height="520"
+      allow="clipboard-write"
+      title="Sobia Liaqat Chatbot"
+    ></iframe>
+  </div>
+  <script>
+    // Navbar mobile menu
+    const menuToggle = document.getElementById('mobile-menu');
+    const navUl = document.getElementById('nav-ul');
+    menuToggle.addEventListener('click', function() {
+      navUl.classList.toggle('open');
+      menuToggle.classList.toggle('active');
+      if (navUl.classList.contains('open')) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+    });
+    // Close nav menu when link clicked (for mobile)
+    Array.from(navUl.querySelectorAll('a')).forEach(link => {
+      link.addEventListener('click', function() {
+        navUl.classList.remove('open');
+        menuToggle.classList.remove('active');
+        document.body.style.overflow = "";
+      });
+    });
+
+    // Animate skill bars when visible
+    const skillsGrid = document.getElementById('skills-grid');
+    function animateSkillBars() {
+      const gridTop = skillsGrid.getBoundingClientRect().top;
+      const windowH = window.innerHeight || document.documentElement.clientHeight;
+      if (gridTop < windowH - 80) {
+        skillsGrid.classList.add('animated');
+        document.querySelectorAll('.skill-bar').forEach(bar => {
+          bar.style.width = bar.style.getPropertyValue('--progress');
+        });
+        window.removeEventListener('scroll', animateSkillBars);
       }
     }
-  });
+    window.addEventListener('scroll', animateSkillBars);
+    animateSkillBars();
 
-  // Chatbot UI logic
-  const chatbotBtn = document.getElementById('chatbot-toggle-btn');
-  const chatbotIframe = document.getElementById('chatbase-iframe');
-  const chatbotClose = document.getElementById('chatbot-close-btn');
-  chatbotBtn.style.display = "none";
-  chatbotIframe.style.display = "block";
-  chatbotClose.style.display = "flex";
-  chatbotClose.addEventListener('click', function() {
-    chatbotIframe.style.display = 'none';
-    chatbotClose.style.display = 'none';
-    chatbotBtn.style.display = 'block';
-  });
-  chatbotBtn.addEventListener('click', function() {
-    chatbotIframe.style.display = 'block';
-    chatbotClose.style.display = 'flex';
-    chatbotBtn.style.display = 'none';
-  });
-  // Adjust chatbot for mobile
-  function adjustChatbot() {
-    if(window.innerWidth < 650){
-      chatbotIframe.style.width = "98vw";
-      chatbotIframe.style.height = "68vh";
-    } else {
-      chatbotIframe.style.width = "370px";
-      chatbotIframe.style.height = "520px";
-    }
-  }
-  window.addEventListener('resize', adjustChatbot);
-  adjustChatbot();
-</script>
-<script src="https://unpkg.com/scrollreveal"></script>
-<script>
-  ScrollReveal({ 
-    distance: '60px',
-    duration: 1000,
-    delay: 100,
-    reset: false
-  });
-  ScrollReveal().reveal('.section-title, .about-row, .skills-grid, .services-grid, .portfolio-grid, .testimonials-grid, .contact-row', {
-    origin: 'bottom',
-    interval: 200
-  });
-</script>
+    // Chatbot
+    const chatbotBtn = document.getElementById('chatbot-toggle-btn');
+    const chatbotIframe = document.getElementById('chatbase-iframe');
+    const chatbotClose = document.getElementById('chatbot-close-btn');
+    const chatbotWrapper = document.getElementById('chatbot-wrapper');
+    chatbotBtn.style.display = "none";
+    chatbotIframe.style.display = "block";
+    chatbotClose.style.display = "flex";
+    chatbotClose.addEventListener('click', function() {
+      chatbotIframe.style.display = 'none';
+      chatbotClose.style.display = 'none';
+      chatbotBtn.style.display = 'block';
+    });
+    chatbotBtn.addEventListener('click', function() {
+      chatbotIframe.style.display = 'block';
+      chatbotClose.style.display = 'flex';
+      chatbotBtn.style.display = 'none';
+    });
+
+    // Close chatbot on outside click (on small screens)
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth < 600 && !chatbotWrapper.contains(e.target) && chatbotIframe.style.display !== 'none') {
+        chatbotIframe.style.display = 'none';
+        chatbotClose.style.display = 'none';
+        chatbotBtn.style.display = 'block';
+      }
+    });
+  </script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal({ 
+      distance: '60px',
+      duration: 1000,
+      delay: 100,
+      reset: false
+    });
+    ScrollReveal().reveal('.section-title, .about-row, .skills-grid, .services-grid, .portfolio-grid, .testimonials-grid, .contact-row', {
+      origin: 'bottom',
+      interval: 200
+    });
+  </script>
 </body>
 </html>
