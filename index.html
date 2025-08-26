@@ -380,7 +380,8 @@
       box-shadow: 0 8px 28px #6edff644;
     }
     /* Mobile Responsive Fix for Portfolio */
-    @media (max-width: 650px) {
+    
+  @media (max-width: 650px) {
   .portfolio-grid {
     flex-direction: column;
     gap: 1.3rem;
@@ -392,9 +393,10 @@
     box-sizing: border-box;
   }
   .portfolio-img {
-    height: 140px;
+    height: 90px;    /* yahan se height kam kar di gayi hai */
     width: 100%;
     object-fit: cover;
+    display: block;
   }
   .portfolio-info {
     padding: 1rem 0.7rem;
