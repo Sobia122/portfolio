@@ -379,6 +379,33 @@
       transform: scale(1.07);
       box-shadow: 0 8px 28px #6edff644;
     }
+    /* Mobile Responsive Fix for Portfolio */
+    @media (max-width: 650px) {
+      .portfolio-grid {
+        flex-direction: column;
+        gap: 1.3rem;
+      }
+      .portfolio-item {
+        min-width: 80vw;
+        max-width: 98vw;
+        width: 100%;
+      }
+      .portfolio-img {
+        height: 140px;
+      }
+      .portfolio-info h4,
+      .portfolio-info p,
+      .portfolio-info .btn {
+        text-align: left;
+        font-size: 1rem;
+      }
+      .portfolio-info .btn {
+        display: block;
+        width: fit-content;
+        margin: 0.7rem 0 0 0;
+        font-size: 1rem;
+      }
+    }
     /* Testimonials */
     .testimonials-grid {
       display: flex;
